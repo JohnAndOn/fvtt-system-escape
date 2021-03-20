@@ -1,6 +1,8 @@
-# escape
+# Escape Game Foundry VTT System
 
-Add your description here.
+The COVID-19 pandemic affected a lot of aspects of life, significantly impacting business models that require in-person interaction.  One industry that was heavily impacted was the escape room industry, which couldn't very well be locking groups of people into a confined area for a significant amount of time.  Many companies turned to digital alternatives, forging extermely creative solutions to this global crisis.  I hope to contribute to this effort to allow more people the digital tools to run a certain type of online escape room that may feel much like a hosted point-and-click video game.
+
+This game system utilizes Foundry VTT, and for maximum effect should be hosted on the Forge or some other self-hosting option.
 
 ## Installation
 
