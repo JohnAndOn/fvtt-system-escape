@@ -14,11 +14,18 @@
 import { registerSettings } from './settings';
 import { preloadTemplates } from './preloadTemplates';
 
+import EscapeActor from './actor/actor';
+import EscapeActorSheet from './actor/actorSheet';
+import EscapeItem from './item/item';
+import EscapeItemSheet from './item/itemSheet';
+
 // Initialize system
 Hooks.once('init', async () => {
   console.log('escape | Initializing escape');
 
   // Assign custom classes and constants here
+  CONFIG.Actor.entityClass = EscapeActor;
+  CONFIG.Item.entityClass = EscapeItem;
 
   // Register custom system settings
   registerSettings();
@@ -27,6 +34,19 @@ Hooks.once('init', async () => {
   await preloadTemplates();
 
   // Register custom sheets (if any)
+  Actors.unregisterSheet("core", ActorSheet);
+  Items.unregisterSheet("core", ItemSheet);
+
+  Actors.registerSheet("escape", EscapeActorSheet, {
+    label: 'ESCAPE.ActorSheet',
+    types: [],
+    makeDefault: true
+  });
+  Items.registerSheet("escape", EscapeItemSheet, {
+    label: 'ESCAPE.ItemSheet',
+    types: [],
+    makeDefault: true
+  });
 });
 
 // Setup system
