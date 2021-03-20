@@ -2,3 +2,11 @@
 /*             Sass             */
 /* This is your Sass entry file */
 /* ---------------------------- */
+.editable {
+    .profile {
+        display: block;
+        width: 100%;
+        object-fit: contain;
+        border: 0;
+    }
+}

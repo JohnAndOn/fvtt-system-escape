@@ -33,6 +33,7 @@
     "@league-of-foundry-developers/foundry-vtt-types": "^0.7.9-3",
     "@rollup/plugin-node-resolve": "^11.2.0",
     "@types/jest": "^26.0.21",
+    "browser-sync": "^2.26.14",
     "chalk": "^4.1.0",
     "fs-extra": "^9.1.0",
     "gulp": "^4.0.2",

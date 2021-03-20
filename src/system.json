@@ -17,7 +17,7 @@
     "module/escape.js"
   ],
   "styles": [
-    "styles/escape.css"
+    "css/src/styles/escape.css"
   ],
   "packs": [],
   "dependencies": [],
