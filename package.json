@@ -3,14 +3,14 @@
   "name": "escape",
   "version": "0.0.0",
   "description": "A system for hosting virtual escape games.",
-  "license": "",
-  "homepage": "",
+  "license": "https://github.com/JohnAndOn/fvtt-system-escape/blob/main/LICENSE.md",
+  "homepage": "https://github.com/JohnAndOn/fvtt-system-escape",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/JohnAndOn/fvtt-system-escape"
   },
   "bugs": {
-    "url": ""
+    "url": "https://github.com/JohnAndOn/fvtt-system-escape/issues"
   },
   "contributors": [
     {
