@@ -1,0 +1,7 @@
+{
+    "TIMER.Reset": "Reset",
+    "TIMER.Run": "Run",
+    "TIMER.Pause": "Pause",
+    "TIMER.Adjust": "Adjust",
+    "TIMER.Configure": "Configure"
+}
