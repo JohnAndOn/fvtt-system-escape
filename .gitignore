@@ -2,6 +2,10 @@
 .idea/
 .vs/
 
+# Planning files
+escape.md
+escape.puml
+
 # Node Modules
 node_modules/
 npm-debug.log
