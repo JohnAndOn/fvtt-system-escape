@@ -6,6 +6,42 @@
 /* ---------------------------- */
 /* SIDEBAR                      */
 /* ---------------------------- */
+
+#sidebar {
+    height: auto;
+    max-height: 99vh;
+
+    #sidebar-timer {
+        text-align: center;
+        padding: 5px;
+
+        #timer-controls {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+
+            a {
+                height: 32px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+
+        #time-remaining {
+            font-size: 3rem;
+            border: 2px groove #23221d;
+            margin: 5%;
+            padding: 2%;
+            border-radius: 0.25rem;
+        }
+    }
+
+    #chat {
+        height: 100vh;
+    }
+}
+
 #sidebar-tabs {
     .spacer, .item {
         flex: 1;
@@ -16,6 +52,6 @@
 
     #sidebar.collapsed & {
         flex: 1;
-        flex-direction: column;
+        // flex-direction: column;
     }
 }
