@@ -1,11 +1,25 @@
 export default class EscapeSidebar extends Sidebar {
 	static get defaultOptions() {
-        console.log('escape | Getting default sidebar options');
+    console.log('escape | Getting default sidebar options');
 
-        return mergeObject(super.defaultOptions as any, {
-            template: "systems/escape/templates/sidebar/sidebar.html",
-      });
+    return mergeObject(super.defaultOptions as any, {
+        template: "systems/escape/templates/sidebar/sidebar.html",
+    });
+  }
+
+  /** @override */
+  async _render(...args: any): Promise<any> {
+    console.log("escape | Rendering sidebar");
+    await super._render(...args);
+
+    const timer = (ui as any)["timer"];
+    try {
+      await timer._render(true, {})
+    } catch(err) {
+      console.error(`Failed to render Sidebar tab ${name}`);
+      console.error(err);
     }
+  }
 
   /**
    * Expand the Sidebar container from a collapsed state.

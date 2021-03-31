@@ -10,19 +10,24 @@
 #sidebar {
     height: auto;
     max-height: 99vh;
-
+    
     #sidebar-timer {
         text-align: center;
         padding: 5px;
+        display: flex;
+        flex-direction: row;
 
         #timer-controls {
             display: flex;
-            flex-direction: row;
-            justify-content: space-around;
+            width: 2ch;
+            flex: 0;
+            text-align: center;
+            flex-direction: column;
+            justify-content: center;
 
             a {
                 flex: 1;
-                height: 32px;
+                //height: 32px;
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -30,6 +35,7 @@
         }
 
         #time-remaining {
+            flex: 1;
             font-size: 3rem;
             margin: 5%;
             padding: 2%;

@@ -1,7 +1,16 @@
 {
-    "TIMER.Reset": "Reset",
-    "TIMER.Run": "Run",
-    "TIMER.Pause": "Pause",
-    "TIMER.Adjust": "Adjust",
-    "TIMER.Configure": "Configure"
+    "SETTINGS": {
+        "EscapeTime": {
+            "start": "Initial time to escape",
+            "hint": "Expressed in minutes"
+        }
+    },
+
+    "TIMER": {
+        "Reset": "Reset",
+        "Run": "Run",
+        "Pause": "Pause",
+        "Adjust": "Adjust",
+        "Configure": "Configure"
+    }
 }

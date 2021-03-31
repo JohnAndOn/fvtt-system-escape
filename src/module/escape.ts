@@ -14,11 +14,18 @@
 import { registerSettings } from './settings';
 import { preloadTemplates } from './preloadTemplates';
 
+import EscapeTimer from "./ui/timer";
+import EscapeSidebar from "./ui/sidebar";
+
 // Initialize system
 Hooks.once('init', async () => {
   console.log('escape | Initializing escape');
 
   // Assign custom classes and constants here
+  Object.assign(CONFIG.ui, {
+    sidebar: EscapeSidebar,
+    timer: EscapeTimer
+  });
 
   // Register custom system settings
   registerSettings();
@@ -41,3 +48,11 @@ Hooks.once('ready', async () => {
 });
 
 // Add any additional hooks if necessary
+Hooks.on("pauseGame", async (paused) => {
+  console.log("Pause state changed");
+  if (paused) {
+    (ui as any).timer.stopTimer();
+  } else {
+    (ui as any).timer.startTimer();
+  }
+});

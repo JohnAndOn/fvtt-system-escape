@@ -1,16 +1,5 @@
 <div id="sidebar" class="app">
-    <div id="sidebar-timer" class="timer">
-        {{#if user.isGM }}
-        <div id="timer-controls">
-            <a class="control" title="{{localize 'TIMER.Reset'}}"><i class="fas fa-history"></i></a>
-            <a class="control" title="{{localize 'TIMER.Run'}}"><i class="fas fa-play"></i></a>
-            <a class="control" title="{{localize 'TIMER.Pause'}}"><i class="fas fa-pause"></i></a>
-            <a class="control" title="{{localize 'TIMER.Adjust'}}"><i class="fas fa-calculator"></i></a>
-            <a class="control" title="{{localize 'TIMER.Configure'}}"><i class="fas fa-cogs"></i></a>
-        </div>
-        {{/if}}
-        <div id="time-remaining">1:00:00</div>
-    </div>
+    <template id="timer"></template>
     <nav id="sidebar-tabs" class="tabs">
         <a class="item" title="{{localize 'SIDEBAR.TabChat'}}" data-tab="chat">
             <i class="fas fa-comments"></i>
