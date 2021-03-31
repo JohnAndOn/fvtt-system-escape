@@ -1,25 +1,29 @@
 
 export default class EscapeTimer extends SidebarTab {
     maxTime: number;
-    currentTime: number;
+    currentTime: number = 0;
     timesUp: number;
     timer: number = 0;
 
     constructor(options={}) {
         super(options);
-        this.maxTime = game.settings.get("escape", "startingTime") * 60 * 1000;
-        this.currentTime = game.settings.get("escape", "currentTime");
+        let t = game.settings.get("escape", "startingTime") * 60 * 1000;
+        this.maxTime = t;
+        this.currentTime = t;
         this.timesUp = Date.now() + this.currentTime;
     }
 
     /** @override */
-    activateListeners() {
+    activateListeners(html: any) {
+        console.log(html);
         document.getElementById("timer-reset")?.addEventListener("click", function() {
-            let timer = (ui as any)["timer"];
-            let reset = game.settings.get("escape", "startingTime") * 60 * 1000;
-            game.settings.set("escape", "currentTime", reset);
-            timer.timesUp = Date.now() + reset;
+            // let timer = (ui as any)["timer"];
+            // let reset = game.settings.get("escape", "startingTime") * 60 * 1000;
+            // game.settings.set("escape", "currentTime", reset);
+            // timer.timesUp = Date.now() + reset;
         });
+
+        this._contextMenu(html);
     }
   
     /** @override */
@@ -31,20 +35,35 @@ export default class EscapeTimer extends SidebarTab {
         });
     }
 
-
     /** @override */
     getData(options: any): Record<string, any> {
-        const time: Record<string, any> = {};
+        return {
+            user: game.user,
+            time: this.parseTime()
+        }
+    }
 
-        function zeroPad(n: number): String {
+    setTime(t: number): void {
+        this.currentTime = t;
+
+        let time = this.parseTime();
+
+        this.element.find("#timer-sec")[0].innerHTML = time["sec"];
+        this.element.find("#timer-min")[0].innerHTML = time["min"];
+        this.element.find("#timer-hour")[0].innerHTML = time["hour"];
+    }
+
+    parseTime(): { "hour": string, "min": string, "sec": string } {
+        let time = { "hour": "0", "min": "00", "sec": "00" };
+
+        function zeroPad(n: number): string {
             return ('00'+n).slice(-2);
         }
 
-        let neg = false;
         let curr = this.currentTime;
         if (curr < 0) {
             curr *= -1;
-            neg = true;
+            this.element[0].classList.add("negative");
         }
 
         curr = Math.round(curr / 1000);
@@ -52,19 +71,9 @@ export default class EscapeTimer extends SidebarTab {
         curr = Math.floor(curr / 60);
         time["min"] = zeroPad(curr % 60);
         curr = Math.floor(curr / 60);
-        time["hour"] = curr;
+        time["hour"] = curr.toString();
 
-
-        return {
-            user: game.user,
-            neg: neg,
-            time: time
-        }
-    }
-
-    setTime(time: number): void {
-        this.currentTime = time;
-        this.render(true, {});
+        return time;
     }
 
     startTimer(): void {
@@ -81,7 +90,9 @@ export default class EscapeTimer extends SidebarTab {
     }
 
     _contextMenu(html: JQuery) {
+        //let timer = document.getElementById("timer");
         const timerOptions = this._getTimerContextOptions();
+        if (html) new ContextMenu(html as any, "#time-remaining", timerOptions);
     }
 
     _getTimerContextOptions() {
@@ -92,8 +103,17 @@ export default class EscapeTimer extends SidebarTab {
                 condition: game.user?.isGM,
                 callback: (li: any) => {
                     console.log("Reset button clicked!");
-                    let reset = game.settings.get("escape", "startingTime");
-                    game.settings.set("escape", "currentTime", reset * 60 * 1000);
+                    let reset = game.settings.get("escape", "startingTime") * 60 * 1000;
+                    game.settings.set("escape", "currentTime", reset);
+                    (ui as any)["timer"].timesUp = Date.now() + reset;
+                }
+            },
+            {
+                name: "TIMER.Adjust",
+                icon: '<i class="fas fa-calculator"></i>',
+                condition: game.user?.isGM,
+                callback: (li: any) => {
+                    console.log("Adjustment button clicked!");
                 }
             }
         ];

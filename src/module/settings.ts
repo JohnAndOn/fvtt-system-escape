@@ -17,7 +17,7 @@ export function registerSettings(): void {
       }
       timer.maxTime = t;
     }
-  })
+  });
 
   game.settings.register("escape", "currentTime", {
     scope: "world",
@@ -28,6 +28,15 @@ export function registerSettings(): void {
       const timer = (ui as any)["timer"];
       timer.setTime((s as number));
     }
-  })
+  });
+
+  game.settings.register("escape", "warnTimes", {
+    name: "Warning Times",
+    hint: "Up to five times",
+    scope: "world",
+    type: Array,
+    default: [],
+    config: true
+  });
 
 }
