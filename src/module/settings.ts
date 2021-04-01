@@ -30,13 +30,4 @@ export function registerSettings(): void {
     }
   });
 
-  game.settings.register("escape", "warnTimes", {
-    name: "Warning Times",
-    hint: "Up to five times",
-    scope: "world",
-    type: Array,
-    default: [],
-    config: true
-  });
-
 }

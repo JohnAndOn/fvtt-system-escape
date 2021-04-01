@@ -14,19 +14,6 @@ export default class EscapeTimer extends SidebarTab {
     }
 
     /** @override */
-    activateListeners(html: any) {
-        console.log(html);
-        document.getElementById("timer-reset")?.addEventListener("click", function() {
-            // let timer = (ui as any)["timer"];
-            // let reset = game.settings.get("escape", "startingTime") * 60 * 1000;
-            // game.settings.set("escape", "currentTime", reset);
-            // timer.timesUp = Date.now() + reset;
-        });
-
-        this._contextMenu(html);
-    }
-  
-    /** @override */
     static get defaultOptions(): any {
         return mergeObject(SidebarTab.defaultOptions as any, {
             id: "timer",
@@ -34,7 +21,12 @@ export default class EscapeTimer extends SidebarTab {
             title: game.i18n.localize("TIMER.Title")
         });
     }
-
+    
+    /** @override */
+    activateListeners(html: any) {
+        this._contextMenu(html);
+    }
+  
     /** @override */
     getData(options: any): Record<string, any> {
         return {
@@ -63,7 +55,9 @@ export default class EscapeTimer extends SidebarTab {
         let curr = this.currentTime;
         if (curr < 0) {
             curr *= -1;
-            this.element[0].classList.add("negative");
+            this.element.toggleClass("negative", true);
+        } else {
+            this.element.toggleClass("negative", false);
         }
 
         curr = Math.round(curr / 1000);
